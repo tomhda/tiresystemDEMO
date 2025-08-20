@@ -3,6 +3,7 @@ import { Upload, Camera, Search, Loader, Star, ExternalLink, CheckCircle, AlertC
 import { ocrService } from '../services/ocrService';
 import { tireParser } from '../utils/tireParser';
 import { recommendationEngine } from '../utils/tireRecommendation';
+import '../styles/responsive.css';
 
 const UnifiedPage = () => {
   const [step, setStep] = useState('upload'); // 'upload', 'processing', 'review', 'results'

@@ -1,0 +1,80 @@
+
+/* --- Mobile Responsive Styles --- */
+
+/* Apply to screens smaller than 640px (Tailwind's 'sm' breakpoint) */
+@media (max-width: 639px) {
+
+  /* --- General Layout --- */
+  /* Reduce side padding on the main container */
+  .container.mx-auto.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* --- Header --- */
+  header h1 {
+    font-size: 1.5rem; /* Slightly smaller title */
+  }
+
+  /* --- Settings Panel --- */
+  /* Stack the OCR mode buttons vertically */
+  .grid.grid-cols-2.gap-2 {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- Upload Section --- */
+  /* Stack the "Camera" and "File" buttons vertically */
+  .flex.justify-center.gap-4.mt-6 {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .flex.justify-center.gap-4.mt-6 button {
+    width: 100%;
+  }
+  
+  /* Reduce padding on the main drop zone */
+  .p-12.text-center {
+    padding: 2rem 1rem;
+  }
+
+  /* --- Review Section --- */
+  /* Reduce vertical gap between form elements */
+  .p-6.space-y-6 {
+    padding: 1.5rem 1rem;
+  }
+  .grid.gap-6 {
+    gap: 1rem;
+  }
+
+  /* --- Results Section --- */
+  /* Reduce padding on recommendation cards */
+  .border.border-gray-200.rounded-xl.p-6 {
+    padding: 1rem;
+  }
+
+  /* The main flex container inside the card (for mobile, it's already column) */
+  .flex.flex-col.lg\:flex-row.gap-6 {
+    gap: 1.5rem;
+  }
+
+  /* Center the price and button section on mobile */
+  .lg\:w-64.text-center.lg\:text-right.space-y-4 {
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Make the purchase button full width */
+  .lg\:w-64 a.inline-flex {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Stack the star ratings vertically */
+  .flex.items-center.gap-8.mb-4 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+  }
+}
