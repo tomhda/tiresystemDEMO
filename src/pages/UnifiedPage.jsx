@@ -25,6 +25,7 @@ const UnifiedPage = () => {
   const [hasApiKey, setHasApiKey] = useState(!!ocrService.apiKey);
   
   const fileInputRef = useRef(null);
+  const cameraInputRef = useRef(null);
 
   const handleImageSelect = async (file) => {
     if (!file) return;
@@ -230,7 +231,7 @@ const UnifiedPage = () => {
               <button
                 onClick={() => handleModeChange('cloud')}
                 disabled={!hasApiKey}
-                className={`p-3 rounded-lg text-sm transition-colors ${
+                className={`p-3 rounded-lg text-sm transition-colors ${ 
                   ocrMode === 'cloud' && hasApiKey
                     ? 'bg-blue-100 border-2 border-blue-500 text-blue-700'
                     : hasApiKey
@@ -244,7 +245,7 @@ const UnifiedPage = () => {
               
               <button
                 onClick={() => handleModeChange('mock')}
-                className={`p-3 rounded-lg text-sm transition-colors ${
+                className={`p-3 rounded-lg text-sm transition-colors ${ 
                   ocrMode === 'mock'
                     ? 'bg-green-100 border-2 border-green-500 text-green-700'
                     : 'bg-gray-50 border border-gray-200 hover:bg-gray-100'
@@ -286,11 +287,17 @@ const UnifiedPage = () => {
                     <p className="text-sm text-gray-500">JPEG, PNG, WEBP対応（最大10MB）</p>
                   </div>
                   <div className="flex justify-center gap-4 mt-6">
-                    <button className="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); cameraInputRef.current?.click(); }}
+                      className="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                    >
                       <Camera className="w-4 h-4" />
                       カメラで撮影
                     </button>
-                    <button className="flex items-center gap-2 border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors">
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}
+                      className="flex items-center gap-2 border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
                       <Upload className="w-4 h-4" />
                       ファイル選択
                     </button>
@@ -323,6 +330,13 @@ const UnifiedPage = () => {
 
               <input
                 ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={(e) => e.target.files[0] && handleImageSelect(e.target.files[0])}
+                className="hidden"
+              />
+              <input
+                ref={cameraInputRef}
                 type="file"
                 accept="image/*"
                 capture="camera"
@@ -518,7 +532,7 @@ const UnifiedPage = () => {
                             </div>
 
                             <p className="text-gray-700 mb-4">
-                              {tire.summary || 'バランスの取れた高性能タイヤです。'}
+                              {tire.summary || 'バランスの取れた高性能タイヤです।'}
                             </p>
                           </div>
 
